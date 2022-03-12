@@ -1,10 +1,17 @@
-package module
+package main
 
 import (
 	"fmt"
 )
 
 type Verifikasi func(string, string) bool
+
+type Author struct {
+	Nama, Password string
+}
+
+var belanjaChannel = make(chan string)
+var membayarChannel = make(chan string)
 
 func (author Author) VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
 	if verifikasi(name, password) {
@@ -92,7 +99,7 @@ func Belanja() {
 	}()
 }
 
-func Membayar() {
+func Sembayar() {
 	for membayarItem := range belanjaChannel {
 		fmt.Println("Berhasil membayar", membayarItem)
 		membayarChannel <- membayarItem
