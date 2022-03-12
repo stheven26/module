@@ -6,19 +6,14 @@ import (
 
 type Verifikasi func(string, string) bool
 
-type Author struct {
-	Nama, Password string
-}
-
-var belanjaChannel = make(chan string)
-var membayarChannel = make(chan string)
-
-func (author Author) VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
+func (author Author) VerifikasiAkses(name string, password string, verifikasi Verifikasi) string {
 	if verifikasi(name, password) {
 		fmt.Print("'Pesan: ")
+		return name
 	} else {
 		fmt.Print("'Pesan: ")
 		fmt.Printf("Selamat datang %s!'\n", author.Nama)
+		return password
 	}
 }
 
