@@ -1,15 +1,17 @@
 package module
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Verifikasi func(string, string) bool
 
-func VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
+func (author Author) VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
 	if verifikasi(name, password) {
 		fmt.Print("'Pesan: ")
 	} else {
 		fmt.Print("'Pesan: ")
-		fmt.Printf("Selamat datang %s!'\n", name)
+		fmt.Printf("Selamat datang %s!'\n", author.Nama)
 	}
 }
 
@@ -63,5 +65,42 @@ func Belajar() {
 		fmt.Printf("'Selamat belajar %s dengan Jumlah %d SKS dan estimasi waktu belajar %d menit'", bahasaPemograman.Nama, bahasaPemograman.SKS, bahasaPemograman.SKS*50)
 	} else {
 		fmt.Println("Masukkan pilihan belajar anda dengan benar!")
+	}
+}
+
+func Belanja() {
+	listBelanja := [...]string{"kopi", "sendal", "burger", "tas", "kopi", "sepatu", "burger", "sendal"}
+	go func() {
+		for _, item := range listBelanja {
+			if item == "kopi" {
+				fmt.Printf("memasukkan %s ke dalam keranjang\n", item)
+				belanjaChannel <- item
+			} else if item == "burger" {
+				fmt.Printf("memasukkan %s ke dalam keranjang\n", item)
+				belanjaChannel <- item
+			} else if item == "sendal" {
+				fmt.Printf("memasukkan %s ke dalam keranjang\n", item)
+				belanjaChannel <- item
+			} else if item == "sepatu" {
+				fmt.Printf("memasukkan %s ke dalam keranjang\n", item)
+				belanjaChannel <- item
+			} else if item == "tas" {
+				fmt.Printf("memasukkan %s ke dalam keranjang\n", item)
+				belanjaChannel <- item
+			}
+		}
+	}()
+}
+
+func membayar() {
+	for membayarItem := range belanjaChannel {
+		fmt.Println("Berhasil membayar", membayarItem)
+		membayarChannel <- membayarItem
+	}
+}
+
+func selesaiBelanja() {
+	for finished := range membayarChannel {
+		fmt.Println("Telah selesai belanja", finished)
 	}
 }
