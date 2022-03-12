@@ -6,10 +6,6 @@ import (
 
 type Verifikasi func(string, string) bool
 
-type Author struct {
-	Nama, Password string
-}
-
 var belanjaChannel = make(chan string)
 var membayarChannel = make(chan string)
 
