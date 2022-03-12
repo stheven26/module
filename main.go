@@ -4,16 +4,17 @@ import "fmt"
 
 type Verifikasi func(string, string) bool
 
-func VerifikasiAkses(name string, password string, verifikasi Verifikasi) (string, string) {
+type Author struct {
+	Nama, Password string
+}
+
+func VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
 	if verifikasi(name, password) {
-		fmt.Print("Pesan: ")
+		fmt.Print("'Pesan: ")
 	} else {
-		fmt.Print("Pesan: ")
-		fmt.Printf("Selamat datang %s\n", name)
+		fmt.Print("'Pesan: ")
+		fmt.Printf("Selamat datang %s!'\n", name)
 	}
-	nama := name
-	Password := password
-	return nama, Password
 }
 
 func FeetToMeter(num float64) float64 {
@@ -29,4 +30,42 @@ func MileToKM(num float64) float64 {
 func CCToLiter(num float64) float64 {
 	liter := num / 1000
 	return liter
+}
+
+func Belajar() {
+	fmt.Print("Lesson:\n1.Belajar Golang\n2.Belajar Python\n3.Belajar Javascript\n")
+	fmt.Print("Enter Option Lesson: ")
+	var Option int
+	fmt.Scan(&Option)
+
+	if Option == 1 {
+		bahasaPemograman := struct {
+			Nama string
+			SKS  int
+		}{
+			Nama: "Golang",
+			SKS:  3,
+		}
+		fmt.Printf("'Selamat belajar %s dengan Jumlah %d SKS dan estimasi waktu belajar %d menit'", bahasaPemograman.Nama, bahasaPemograman.SKS, bahasaPemograman.SKS*50)
+	} else if Option == 2 {
+		bahasaPemograman := struct {
+			Nama string
+			SKS  int
+		}{
+			Nama: "Python",
+			SKS:  4,
+		}
+		fmt.Printf("'Selamat belajar %s dengan Jumlah %d SKS dan estimasi waktu belajar %d menit'", bahasaPemograman.Nama, bahasaPemograman.SKS, bahasaPemograman.SKS*50)
+	} else if Option == 3 {
+		bahasaPemograman := struct {
+			Nama string
+			SKS  int
+		}{
+			Nama: "Javascript",
+			SKS:  2,
+		}
+		fmt.Printf("'Selamat belajar %s dengan Jumlah %d SKS dan estimasi waktu belajar %d menit'", bahasaPemograman.Nama, bahasaPemograman.SKS, bahasaPemograman.SKS*50)
+	} else {
+		fmt.Println("Masukkan pilihan belajar anda dengan benar!")
+	}
 }
