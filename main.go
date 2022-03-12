@@ -4,10 +4,6 @@ import "fmt"
 
 type Verifikasi func(string, string) bool
 
-type Author struct {
-	Nama, Password string
-}
-
 func VerifikasiAkses(name string, password string, verifikasi Verifikasi) {
 	if verifikasi(name, password) {
 		fmt.Print("'Pesan: ")
