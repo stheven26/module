@@ -92,14 +92,14 @@ func Belanja() {
 	}()
 }
 
-func membayar() {
+func Membayar() {
 	for membayarItem := range belanjaChannel {
 		fmt.Println("Berhasil membayar", membayarItem)
 		membayarChannel <- membayarItem
 	}
 }
 
-func selesaiBelanja() {
+func SelesaiBelanja() {
 	for finished := range membayarChannel {
 		fmt.Println("Telah selesai belanja", finished)
 	}
