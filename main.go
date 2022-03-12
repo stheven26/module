@@ -99,7 +99,7 @@ func Belanja() {
 	}()
 }
 
-func Sembayar() {
+func Membayar() {
 	for membayarItem := range belanjaChannel {
 		fmt.Println("Berhasil membayar", membayarItem)
 		membayarChannel <- membayarItem
